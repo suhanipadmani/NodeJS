@@ -2,7 +2,7 @@ import express from 'express';
 import { logger } from './middlewares/logger.js';
 import userRoutes from './routes/userRoutes.js';
 import { authorize } from './middlewares/auth.js';
-const PORT = 8000;
+const PORT = 3000;
 
 const app = express();
 
