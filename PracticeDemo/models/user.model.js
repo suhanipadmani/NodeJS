@@ -4,8 +4,6 @@ mongoose.connect("mongodb://localhost:27017/miniDemo")
 
 const userSchema = new Schema({
     username: String,
-    name: String,
-    age: Number,
     email: String,
     password: String,
     posts: [

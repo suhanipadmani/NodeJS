@@ -63,7 +63,7 @@ app.post("/post", isLoggedIn, async (req, res) => {
 });
 
 app.post("/register", async (req, res) => {
-    const {name, username, password, email, age} = req.body;
+    const {username, password, email} = req.body;
 
     let user = await User.findOne({email});
     if(user) return res.status(500).send("User already registered");
@@ -72,15 +72,13 @@ app.post("/register", async (req, res) => {
         bcrypt.hash(password, salt, async (err, hash) => {
             let user = await User.create({
                 username,
-                name, 
                 password: hash,
-                email, 
-                age
+                email
             });
 
             let token = jwt.sign({email: email, userid: user._id}, "message");
             res.cookie("token", token);
-            res.send("registered");
+            res.redirect("/login");
         })
     });
 });
